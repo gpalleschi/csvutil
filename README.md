@@ -9,79 +9,54 @@ Use: `CSVutil.sh <CSV File Name> (options)`
 Parameters `(...)` are optional  
 Parameters `<...>` are mandatory   
 
-<style type="text/css">
-#int {
-  text-align: center;
-  color: black;
-  font-weight: bold;
-  border: 1px solid black;
-}
-
-#opt {
-  font-weight: bold;
-  border: 1px solid black;
-}
-
-#desc {
-  border: 1px solid black;
-}
-
-table {
-  background-color: white;
-  color: black;
-  border: 1px black;
-}
-
-</style>
-
 <table>
-    <tr>
-        <td id="int" width="30%" bgcolor="#A9A9A9">Option</td>
-        <td id="int" bgcolor="#A9A9A9">Description</td>
+    <tr style="background-color:#A9A9A9">
+        <td width="30%" style="text-align:center;color:black;font-weight:bold;border:1px solid black">Option</td>
+        <td style="text-align:center;color:black;font-weight:bold;border:1px solid black">Description</td>
     </tr>
     <tr>
-        <td id="opt" width="30%">[-h]</td>
-        <td id="desc">Display an Help</td>
+        <td width="30%" style="font-weight:bold;border:1px solid black">[-h]</td>
+        <td style="border:1px solid black">Display an Help</td>
     </tr>
     <tr>
-        <td id="opt" width="30%">[-s(Separaror)]</td>
-        <td id="desc">To set field separator {default is ;}</td>
+        <td width="30%" style="font-weight:bold;border:1px solid black">[-s(Separaror)]</td>
+        <td style="border:1px solid black">To set field separator {default is ;}</td>
     </tr>
     <tr>
-        <td id="opt" width="30%">[-e(Columns To Extract)]</td>
-        <td id="desc">List of columns to extract separated by , or a range of columns separated by - {example -e1,4,8-11 extract columns numbered 1 and 4 and from 8 to 11}</td>
+        <td width="30%" style="font-weight:bold;border:1px solid black">[-e(Columns To Extract)]</td>
+        <td style="border:1px solid black">List of columns to extract separated by , or a range of columns separated by - {example -e1,4,8-11 extract columns numbered 1 and 4 and from 8 to 11}</td>
     </tr>
     <tr>
-        <td id="opt" width="30%">[-r(Columns To Extract)]</td>
-        <td id="desc">List of columns to remove separated by , or a range of columns separated by - {example -r1-3,5 remove columns numbered from 1 to 3 and 5}</td>
+        <td width="30%" style="font-weight:bold;border:1px solid black">[-r(Columns To Extract)]</td>
+        <td style="border:1px solid black">List of columns to remove separated by , or a range of columns separated by - {example -r1-3,5 remove columns numbered from 1 to 3 and 5}</td>
     </tr>
     <tr>
-        <td id="opt" width="30%">[-d]</td>
-        <td id="desc">Debug Mode</td>
+        <td width="30%" style="font-weight:bold;border:1px solid black">[-d]</td>
+        <td style="border:1px solid black">Debug Mode</td>
     </tr>
     <tr>
-        <td id="opt" width="30%">[-c(New CSV Separator)]</td>
-        <td id="desc">Specify a new CSV separator</td>
+        <td width="30%" style="font-weight:bold;border:1px solid black">[-c(New CSV Separator)]</td>
+        <td style="border:1px solid black">Specify a new CSV separator</td>
     </tr>
     <tr>
-        <td id="opt" width="30%">[-f(Filter Condition)]</td>
-        <td id="desc">Filter Condition is composed by number column and a regular expression diveded each other by : {example -f2:^Ab Filter will be apply at column 2 and if is true (starts with Ab) record will be filtered} You can specify more filter options and will be related each other in and condition</td>
+        <td width="30%" style="font-weight:bold;border:1px solid black">[-f(Filter Condition)]</td>
+        <td style="border:1px solid black">Filter Condition is composed by number column and a regular expression diveded each other by : {example -f2:^Ab Filter will be apply at column 2 and if is true (starts with Ab) record will be filtered} You can specify more filter options and will be related each other in and condition</td>
     </tr>
     <tr>
-        <td id="opt" width="30%">[-o(File Name Output)]</td>
-        <td id="desc">File Name Output to generate instead stdout</td>
+        <td width="30%" style="font-weight:bold;border:1px solid black">[-o(File Name Output)]</td>
+        <td style="border:1px solid black">File Name Output to generate instead stdout</td>
     </tr>
     <tr>
-        <td id="opt" width="30%">[-ff(File Name Filtered)]</td>
-        <td id="desc">File Name where are generated all filtered record in original format</td>
+        <td width="30%" style="font-weight:bold;border:1px solid black">[-ff(File Name Filtered)]</td>
+        <td style="border:1px solid black">File Name where are generated all filtered record in original format</td>
     </tr>
     <tr>
-        <td id="opt" width="30%">[-t]</td>
-        <td id="desc">This option indicate that first row of csv file contains columns titles used specify with -v option</td>
+        <td width="30%" style="font-weight:bold;border:1px solid black">[-t]</td>
+        <td style="border:1px solid black">This option indicate that first row of csv file contains columns titles used specify with -v option</td>
     </tr>
     <tr>
-        <td id="opt" width="30%">[-v(separator)]</td>
-        <td id="desc">This option is used to show all records with a row for field, you can specify a separator between fields printed {default values is ;}</td>
+        <td width="30%" style="font-weight:bold;border:1px solid black">[-v(separator)]</td>
+        <td style="border:1px solid black">This option is used to show all records with a row for field, you can specify a separator between fields printed {default values is ;}</td>
     </tr>
 </table>
 
