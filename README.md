@@ -9,17 +9,23 @@ Use: `CSVutil.sh <CSV File Name> [options]`
 Parameters `[...]` are optional  
 Parameters `<...>` are mandatory   
 
-**`[-h]`**                       : Display an Help  
-**`[-s<Separaror>]`**            : To set field separator {default is ;}  
-**`[-e<Columns To Extract]`**    : List of columns to extract separated by , or a range of columns separated by - {example -e1,4,8-11 extract columns numbered 1 and 4 and from 8 to 11}  
-**`[-r<Columns To Extract]`**    : List of columns to remove separated by , or a range of columns separated by - {example -r1-3,5 remove columns numbered from 1 to 3 and 5}   
-**`[-d]`**                       : Debug Mode    
-**`[-c<New CSV Separator]`**     : Specify a new CSV separator   
-**`[-f<Filter Condition>]`**     : Filter Condition is composed by number column and a regular expression diveded each other by : {example -f2:^Ab Filter will be apply at column 2 and if is true (starts with Ab) record will be filtered} You can specify more filter options and will be related each other in and condition   
-**`[-o<File Name Output]`**      : File Name Output to generate instead stdout   
-**`[-ff<File Name Filtered]`**   : File Name where are printed all filtered record    
-**`[-t]`**                       : This option indicate that first row of csv file contains columns titles used with -v option   
-**`[-v]`**                       : This option is used to show all records with a row for field   
+<div class="foo">
+
+Option|Description
+---------------|------------------
+**`[-h]`**|Display an Help  
+**`[-s<Separaror>]`**|To set field separator {default is ;}  
+**`[-e<Columns To Extract]`**|List of columns to extract separated by , or a range of columns separated by - {example -e1,4,8-11 extract columns numbered 1 and 4 and from 8 to 11}  
+**`[-r<Columns To Extract>]`**|List of columns to remove separated by , or a range of columns separated by - {example -r1-3,5 remove columns numbered from 1 to 3 and 5}   
+**`[-d]`**|Debug Mode    
+**`[-c<New CSV Separator]`**|Specify a new CSV separator   
+**`[-f<Filter Condition>]`**|Filter Condition is composed by number column and a regular expression diveded each other by : {example -f2:^Ab Filter will be apply at column 2 and if is true (starts with Ab) record will be filtered} You can specify more filter options and will be related each other in and condition   
+**`[-o<File Name Output]`**|File Name Output to generate instead stdout   
+**`[-ff<File Name Filtered]`**|File Name where are printed all filtered record    
+**`[-t]`**|This option indicate that first row of csv file contains columns titles used with -v option   
+**`[-v<separator>]`**|This option is used to show all records with a row for field, you have to specify or not a separator for fields printed {default values is ;}      
+
+</div>
 
 It's important clarify that for options -e, -r and -f column number start from 1.  
 

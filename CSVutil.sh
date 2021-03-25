@@ -10,7 +10,7 @@ echo '### | |___ ___) |\ V /| |_| | |_| | |_\__ \ | | |'
 echo '###  \____|____/  \_/  \__,_|\__|_|_(_)___/_| |_|'
 echo '###'
 echo '### CSVutil.sh - GNU General Public License v3.0'
-echo '### Version: 1.1, date: 25 Mar 2021'
+echo '### Version: 1.2, date: 25 Mar 2021'
 echo '###'
 echo '### Author : Giovanni Palleschi'
 echo '###'
@@ -32,7 +32,7 @@ echo '###                                                 all filter are relatio
 echo '###           -o<output filename> for generate output in a file instead of stdout'
 echo '###           -ff<filtered record filename> for generate in a file separated filtered records'
 echo '###           -t indicate that it''s present first line with column titles'
-echo '###           -v to show records a field for row '
+echo '###           -v<separator> to show records a field for row you have to specify or not a separator for fields printed {default values is ;}'
 echo '###'
 echo '### Examples of executions :'
 echo '###'
@@ -90,6 +90,7 @@ fRules=()
 FLAGCS=0
 FLAGT=0
 FLAGV=0
+SEPV=";"
 
 # Loop over arguments
 for var in "$@"
@@ -164,6 +165,9 @@ do
       FLAGT=1
    elif [[ ${var:0:2} == -v ]]; then     
       FLAGV=1
+      if [ ${var:2} ]; then
+         SEPV="${var:2}"
+      fi
    elif [[ ${var:0:2} == -s ]]; then     
       CSV_SEPARATOR="${var:2}"
    elif [[ ${var:0:2} == -c ]]; then     
@@ -226,12 +230,12 @@ while read -r LINE; do
            numCol=0
            for CSVFIELD in "${CSVFIELDS[@]}"
            do
+             indA=$numCol 
+             numCol=$((numCol+1))
              if [ $FLAGT -eq 1 ]; then
-                vprint $numCol';'${TITLEFIELDS[$numCol]}';'$CSVFIELD  
-                numCol=$((numCol+1))
+                vprint $numCol$SEPV${TITLEFIELDS[$indA]}$SEPV$CSVFIELD  
              else
-                numCol=$((numCol+1))
-                vprint $numCol' : <'$CSVFIELD'>'
+                vprint $numCol$SEPV$CSVFIELD
              fi
            done
         fi
