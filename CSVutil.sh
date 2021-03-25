@@ -10,7 +10,7 @@ echo '### | |___ ___) |\ V /| |_| | |_| | |_\__ \ | | |'
 echo '###  \____|____/  \_/  \__,_|\__|_|_(_)___/_| |_|'
 echo '###'
 echo '### CSVutil.sh - GNU General Public License v3.0'
-echo '### Version: 1.0, date: 24 Mar 2021'
+echo '### Version: 1.1, date: 25 Mar 2021'
 echo '###'
 echo '### Author : Giovanni Palleschi'
 echo '###'
@@ -31,6 +31,8 @@ echo '###           -f<column number>:<regexp to filter> {you can specify more t
 echo '###                                                 all filter are relationated each other in and condition.}'
 echo '###           -o<output filename> for generate output in a file instead of stdout'
 echo '###           -ff<filtered record filename> for generate in a file separated filtered records'
+echo '###           -t indicate that it''s present first line with column titles'
+echo '###           -v to show records a field for row '
 echo '###'
 echo '### Examples of executions :'
 echo '###'
@@ -47,6 +49,11 @@ echo '###                                                          a new file wi
 function clear_file
 {
     if [ -f "$1" ]; then rm "$1"; fi
+}
+
+function vprint
+{
+  echo $1
 }
 
 function deb_msg
@@ -81,6 +88,8 @@ FLAGFF=0
 FILEFF=""
 fRules=()
 FLAGCS=0
+FLAGT=0
+FLAGV=0
 
 # Loop over arguments
 for var in "$@"
@@ -151,6 +160,10 @@ do
 
    elif [[ ${var:0:2} == -d ]]; then     
       FDEBUG=1
+   elif [[ ${var:0:2} == -t ]]; then     
+      FLAGT=1
+   elif [[ ${var:0:2} == -v ]]; then     
+      FLAGV=1
    elif [[ ${var:0:2} == -s ]]; then     
       CSV_SEPARATOR="${var:2}"
    elif [[ ${var:0:2} == -c ]]; then     
@@ -200,16 +213,26 @@ numRec=0
 while read -r LINE; do
         LINE_TO_PRINT=""
         numRec=$((numRec+1))
-        IFS=$CSV_SEPARATOR read -r -a CSVFIELDS <<< "$LINE"
-# ---------- DEBUG -----------
-        if [ $FDEBUG -eq 1 ]; then
-           deb_msg '-------------------------------------------------------------------------------------------------------'
-           deb_msg 'Record Number : '$numRec
+        if [[ $FLAGT -eq 1 ]] && [[ $numRec -eq 1 ]]; then
+           IFS=$CSV_SEPARATOR read -r -a TITLEFIELDS <<< "$LINE"
+           continue
+        else   
+           IFS=$CSV_SEPARATOR read -r -a CSVFIELDS <<< "$LINE"
+        fi
+# ---------- VISION -----------
+        if [ $FLAGV -eq 1 ]; then
+           vprint '-------------------------------------------------------------------------------------------------------'
+           vprint 'Record Number : '$numRec
            numCol=0
            for CSVFIELD in "${CSVFIELDS[@]}"
            do
-             numCol=$((numCol+1))
-             deb_msg 'Column '$numCol' value <'$CSVFIELD'>'
+             if [ $FLAGT -eq 1 ]; then
+                vprint $numCol';'${TITLEFIELDS[$numCol]}';'$CSVFIELD  
+                numCol=$((numCol+1))
+             else
+                numCol=$((numCol+1))
+                vprint $numCol' : <'$CSVFIELD'>'
+             fi
            done
         fi
 # ---------- FILTER -----------
@@ -284,11 +307,16 @@ while read -r LINE; do
         fi
 
 # ---------- PRINT OUTPUT -----------
-        if [ $FLAGO -eq 1 ]; then
-           echo $LINE_TO_PRINT >> $FILEO
-        else
-           echo $LINE_TO_PRINT
+        if [ $FLAGV -ne 1 ]; then
+           if [ $FLAGO -eq 1 ]; then
+              echo $LINE_TO_PRINT >> $FILEO
+           else
+              echo $LINE_TO_PRINT
+           fi   
         fi   
 done < "$CSV_FILE"
-deb_msg '-------------------------------------------------------------------------------------------------------'
-deb_msg 'Records :'$numRec
+if [ $FLAGV -eq 1 ]; then
+   vprint '-------------------------------------------------------------------------------------------------------'
+   vprint 'Total Records :'$numRec
+   vprint '-------------------------------------------------------------------------------------------------------'
+fi   

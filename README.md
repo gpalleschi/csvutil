@@ -1,8 +1,8 @@
 # CSVutil
 
 ## Description
-**CSVutil.sh** is a very simple but effective bash shell to manage csv files by command line.  
-Script permits to extract, remove, change separator and filter record from a csv file, all results will be generated in stdout or on a file.  
+**CSVutil.sh** is a very effective bash shell to manage csv files by command line.  
+Script permits to extract, remove, change separator, print and filter record from a csv file, all results will be generated in stdout or on a file.  
 
 Use: `CSVutil.sh <CSV File Name> [options]`  
 
@@ -18,6 +18,8 @@ Parameters `<...>` are mandatory
 **`[-f<Filter Condition>]`**     : Filter Condition is composed by number column and a regular expression diveded each other by : {example -f2:^Ab Filter will be apply at column 2 and if is true (starts with Ab) record will be filtered} You can specify more filter options and will be related each other in and condition   
 **`[-o<File Name Output]`**      : File Name Output to generate instead stdout   
 **`[-ff<File Name Filtered]`**   : File Name where are printed all filtered record    
+**`[-t]`**                       : This option indicate that first row of csv file contains columns titles used with -v option   
+**`[-v]`**                       : This option is used to show all records with a row for field   
 
 It's important clarify that for options -e, -r and -f column number start from 1.  
 
