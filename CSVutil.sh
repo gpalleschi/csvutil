@@ -10,7 +10,7 @@ echo '### | |___ ___) |\ V /| |_| | |_| | |_\__ \ | | |'
 echo '###  \____|____/  \_/  \__,_|\__|_|_(_)___/_| |_|'
 echo '###'
 echo '### CSVutil.sh - GNU General Public License v3.0'
-echo '### Version: 1.2, date: 25 Mar 2021'
+echo '### Version: 1.3, date: 31 Mar 2021'
 echo '###'
 echo '### Author : Giovanni Palleschi'
 echo '###'
@@ -28,9 +28,9 @@ echo '###           -r for remove using -r3,8 [ remove columns numbered 1 4 8 an
 echo '###           -d debug mode {this option will be inserted before others}'
 echo '###           -c<new separator> change separator'
 echo '###           -f<column number>:<regexp to filter> {you can specify more than one filter option, '
-echo '###                                                 all filter are relationated each other in and condition.}'
+echo '###                                                 all filter are relationated each other in or condition.}'
 echo '###           -o<output filename> for generate output in a file instead of stdout'
-echo '###           -ff<filtered record filename> for generate in a file separated filtered records'
+echo '###           -ff<No filtered record filename> for generate in a file separated no filtered records'
 echo '###           -t indicate that it''s present first line with column titles'
 echo '###           -v<separator> to show records a field for row you have to specify or not a separator for fields printed {default values is ;}'
 echo '###'
@@ -112,7 +112,7 @@ do
          FLAGR=1
       fi
       PARAMS="${var:2}"
-      IFS=':' read -r -a arrayV <<< "$PARAMS"
+      IFS=',' read -r -a arrayV <<< "$PARAMS"
 
       if [ "${#arrayV[@]}" -eq 0 ]; then
          err_msg 'No values for -e option !'
@@ -257,6 +257,7 @@ while read -r LINE; do
            done
            if [ $fFilter -eq 1 ]; then
               deb_msg 'Rec number '$numRec' Filtered.'
+           else
               if [ $FLAGFF -eq 1 ]; then
                  echo $LINE >> $FILEFF
               fi
